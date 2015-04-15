@@ -1,12 +1,27 @@
 
-fn num_divisors(n: usize) -> usize {
+
+fn num_factors(n: usize) -> usize {
     let mut cnt = 0;
-    for i in (1..n + 1) {
+    let end = (n as f32).sqrt() as usize;
+    for i in (1..end + 1) {
         if n % i == 0 {
-            cnt += 1;
+            cnt += 2;
         }
     }
     cnt
+}
+
+#[allow(dead_code)]
+fn factors(n: usize) -> Vec<usize> {
+    let mut f = vec![];
+    let end = (n as f32).sqrt() as usize;
+    for i in (1..end + 1) {
+        if n % i == 0 {
+            f.push(i);
+            f.push(n / i);
+        }
+    }
+    f
 }
 
 fn main() {
@@ -16,11 +31,10 @@ fn main() {
 
     loop {
         prod = (1..num + 1).fold(0, |x, sum| sum + x);
-        let t = num_divisors(prod);
+        let t = num_factors(prod);
         if t >= 500 {
             break;
         }
-        println!("{} {}", prod, t);
         num += 1
     }
 

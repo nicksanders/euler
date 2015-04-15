@@ -1,21 +1,18 @@
 #!/usr/bin/python
 
+import functools
 
-def num_divisors(n):
-    cnt = 0
-    for i in range(1, n + 1):
-        if n % i == 0:
-            cnt += 1
-    return cnt
+
+def factors(n):
+    return set(functools.reduce(list.__add__, ([i, n//i] for i in range(1, int(n**0.5) + 1) if n % i == 0)))
 
 num = 1
 
 while True:
     prod = sum(range(1, num + 1))
-    t = num_divisors(prod)
-    if t >= 500:
+    t = factors(prod)
+    if len(t) >= 500:
         break
-    print(prod, t)
     num += 1
 
 print(prod)
