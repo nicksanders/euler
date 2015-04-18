@@ -1,5 +1,1 @@
-*
-!.gitignore
-!*.py
-!*.rs
-!*.md
+rust/target/
