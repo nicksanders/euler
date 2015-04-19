@@ -1,5 +1,6 @@
 
 extern crate num;
+use num::bigint::ToBigUint;
 
 
 fn prime_sieve(mut limit: usize) -> Vec<bool> {
@@ -30,15 +31,14 @@ fn primes(limit: usize) -> Vec<usize> {
 
 fn main() {
 
-    let d = 0;
+    let mut res = 0;
     let limit = 1000;
     let mut period: usize;
 
     for d in primes(limit).iter().rev() {
-        println!("{}", d);
+        res = *d;
         period = 1;
-        while num::pow(10, period) % d != 1 {
-            println!("{} {} {}", period, num::pow(10, period), num::pow(10, period) % d);
+        while num::pow(10.to_biguint().unwrap(), period) % d.to_biguint().unwrap() != 1.to_biguint().unwrap() {
             period += 1;
         }
         if d - 1 == period {
@@ -46,6 +46,6 @@ fn main() {
         }
     }
 
-    println!("{}", d);
+    println!("{}", res);
 
 }
