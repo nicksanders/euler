@@ -51,3 +51,12 @@ def prime_sieve(limit=125000):
 
 def prime_list(limit=125000):
     return [i for i, v in enumerate(prime_sieve(limit)) if v is True]
+
+
+def permutations(l):
+    if len(l) <= 1:
+        yield l
+    else:
+        for i in range(len(l)):
+            for p in permutations(l[:i] + l[i + 1:]):
+                yield l[i:i + 1] + p
