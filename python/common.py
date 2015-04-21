@@ -49,5 +49,5 @@ def prime_sieve(limit=125000):
     return sieve
 
 
-def primes(limit=125000):
+def prime_list(limit=125000):
     return [i for i, v in enumerate(prime_sieve(limit)) if v is True]
