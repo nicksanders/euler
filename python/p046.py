@@ -6,7 +6,7 @@ i = 33
 result = 0
 
 sieve = prime_sieve()
-primes = prime_list()
+primes = prime_list(sieve=sieve)
 
 while True:
     i += 2

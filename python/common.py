@@ -49,8 +49,10 @@ def prime_sieve(limit=125000):
     return sieve
 
 
-def prime_list(limit=125000):
-    return [i for i, v in enumerate(prime_sieve(limit)) if v is True]
+def prime_list(limit=125000, sieve=None):
+    if sieve is None:
+        sieve = prime_sieve(limit)
+    return [i for i, v in enumerate(sieve) if v is True]
 
 
 def permutations(l):
@@ -60,3 +62,11 @@ def permutations(l):
         for i in range(len(l)):
             for p in permutations(l[:i] + l[i + 1:]):
                 yield l[i:i + 1] + p
+
+
+def proper_divisors(n):
+    d = {1}
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            d |= {i, n // i}
+    return d
