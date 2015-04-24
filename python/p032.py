@@ -1,29 +1,6 @@
 #!/usr/bin/python
 
-
-def split_num(n):
-    while n > 0:
-        x = n % 10
-        n = (n - x) // 10
-        yield x
-
-
-def join_nums(nums):
-    r = 0
-    m = 1
-    for n in nums[::-1]:
-        r += n * m
-        m *= 10
-    return r
-
-
-def permutations(l):
-    if len(l) <= 1:
-        yield l
-    else:
-        for i in range(len(l)):
-            for p in permutations(l[:i] + l[i + 1:]):
-                yield l[i:i + 1] + p
+from common import split_num
 
 result = set()
 
